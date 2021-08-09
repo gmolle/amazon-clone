@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
+import ScrollToTop from "../components/ScrollToTop";
 
 export default function Home({products}) {
   return (
@@ -12,13 +14,15 @@ export default function Home({products}) {
 
       <Header />
 
-      <main className='max-w-screen-2xl mx-auto'>
+      <main className='max-w-screen-2xl mx-auto top'>
         <Banner />
 
 
         {/* ProductFeed */}
         <ProductFeed products={products}/>
       </main>
+      <ScrollToTop />
+      <Footer />
     </div>
   );
 }
