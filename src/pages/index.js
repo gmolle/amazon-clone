@@ -1,3 +1,4 @@
+import { getSession } from "next-auth/client";
 import Head from "next/head";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
@@ -17,8 +18,6 @@ export default function Home({products}) {
       <main className='max-w-screen-2xl mx-auto top'>
         <Banner />
 
-
-        {/* ProductFeed */}
         <ProductFeed products={products}/>
       </main>
       <ScrollToTop />
@@ -28,10 +27,12 @@ export default function Home({products}) {
 }
 
 export async function getServerSideProps(context) {
+  const session = await getSession(context)
   const products = await fetch('https://fakestoreapi.com/products')
     .then((res) => res.json())
 
   return {props: {
-    products
+    products,
+    session
   }}
 }
